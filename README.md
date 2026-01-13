@@ -1,4 +1,4 @@
-# QHome Automation System (Project 2026)
+# QHome Automation System
 
 ## 🏠 Project Overview
 **QHome** is a comprehensive, full-stack IoT Smart Home solution designed to provide real-time monitoring, automation, and remote control of environmental and power sensors. The system is built on a modular architecture, spanning from custom PCB hardware design to a modern web-based dashboard.
