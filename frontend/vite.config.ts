@@ -10,7 +10,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://example-backend.com',
+        target: 'https://ruki-api.duckdns.org',
         changeOrigin: true,
         secure: false,
       }
