@@ -50,7 +50,7 @@ sequenceDiagram
     
     Note over Node,Socket: Alert & Error Handling
     Node->>Node: Detect threshold breach<br/>(e.g., Gas > 400 PPM)
-    Node->>Broker: PUBLISH (node/send)<br/>{type: "_alert", payload: {alert_type: "gas_detected"}}
+    Node->>Broker: PUBLISH (node/send)<br/>{type: '_alert', payload: {alert_type: 'gas_detected'}}
     Broker->>Backend: FORWARD (alert message)
     Backend->>Backend: Parse alert type
     Backend->>DB: INSERT (NodeAlert collection)
@@ -58,7 +58,7 @@ sequenceDiagram
     Socket-->>Frontend: Show alert popup
     
     Node->>Node: Sensor read failure<br/>(e.g., DHT timeout)
-    Node->>Broker: PUBLISH (node/send)<br/>{type: "_error", payload: {error_type: "dht_failure"}}
+    Node->>Broker: PUBLISH (node/send)<br/>{type: '_error', payload: {error_type: 'dht_failure'}}
     Broker->>Backend: FORWARD (error message)
     Backend->>DB: INSERT (NodeError collection)
     Backend->>Socket: EMIT (systemError)
@@ -66,13 +66,13 @@ sequenceDiagram
     Note over Node,Socket: Command & Control Flow
     Frontend->>API: HTTP POST /mqtt/command/toggle_light<br/>Headers: X-USERNAME, X-PASSWORD
     API->>API: Authenticate request
-    API->>API: Create command payload<br/>{type: "_command", payload: {cmd: "toggle_light"}}
+    API->>API: Create command payload<br/>{type: '_command', payload: {cmd: 'toggle_light'}}
     API->>Broker: PUBLISH (node/cmd)<br/>Topic: node/cmd<br/>Payload: Command JSON
     API-->>Frontend: 202 Accepted
     Broker->>Node: FORWARD (node/cmd message)
     Node->>Node: Parse command type
     Node->>Node: Execute action<br/>(Toggle relay GPIO)
-    Node->>Broker: PUBLISH (node/send)<br/>{type: "_ack", payload: {status: "success"}}
+    Node->>Broker: PUBLISH (node/send)<br/>{type: '_ack', payload: {status: 'success'}}
     Broker->>Backend: FORWARD (acknowledgment)
     Backend->>Socket: EMIT (commandAck)
     Socket-->>Frontend: Update UI state
@@ -82,14 +82,14 @@ sequenceDiagram
     API->>API: Validate config schema
     API->>DB: UPDATE (NodeConfig collection)<br/>Save new configuration
     DB-->>API: Update confirmed
-    API->>API: Create config payload<br/>{type: "_config_update", payload: {config: {...}}}
+    API->>API: Create config payload<br/>{type: '_config_update', payload: {config: {...}}}
     API->>Broker: PUBLISH (node/cmd)<br/>Topic: node/cmd
     API-->>Frontend: 202 Accepted
     Broker->>Node: FORWARD (config message)
     Node->>Node: Parse config fields
     Node->>Node: Update runtime variables<br/>(thresholds, intervals)
     Node->>Node: Save to EEPROM/SPIFFS
-    Node->>Broker: PUBLISH (node/send)<br/>{type: "_ack", payload: {config_applied: true}}
+    Node->>Broker: PUBLISH (node/send)<br/>{type: '_ack', payload: {config_applied: true}}
     Broker->>Backend: FORWARD (ack)
     Backend->>Socket: EMIT (configUpdated)
     

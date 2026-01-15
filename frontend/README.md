@@ -102,7 +102,7 @@ flowchart TD
     SendAuthRequest --> WaitResponse[Wait for Response]
     WaitResponse --> AuthResponse{Response?}
     
-    AuthResponse -->|401/403| ShowAuthError[Show Authentication Error<br/>"Invalid Credentials"]
+    AuthResponse -->|401/403| ShowAuthError[Show Authentication Error<br/>'Invalid Credentials']
     ShowAuthError --> UserInput
     
     AuthResponse -->|200 OK| SaveSession[Store Credentials<br/>in SessionStorage]
@@ -174,7 +174,7 @@ flowchart TD
     ClickSave --> SendConfigUpdate[POST /mqtt/config<br/>Body: Updated Config JSON]
     SendConfigUpdate --> ShowLoading3[Show Loading Spinner]
     ShowLoading3 --> ConfigResponse{Response?}
-    ConfigResponse -->|202 Accepted| ShowSuccess2[Show Success Toast<br/>"Configuration Updated"]
+    ConfigResponse -->|202 Accepted| ShowSuccess2[Show Success Toast<br/>'Configuration Updated']
     ShowSuccess2 --> WaitConfigAck[Wait for Socket 'configUpdated']
     WaitConfigAck --> RefreshSettings[Refresh Settings Display]
     RefreshSettings --> MainLoop

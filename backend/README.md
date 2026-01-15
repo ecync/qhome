@@ -218,7 +218,7 @@ flowchart TD
     CommandValid -->|No| Return400Cmd[Return 400<br/>Invalid Command]
     Return400Cmd --> EndReq8([End Request])
     
-    CommandValid -->|Yes| CreateCmdPayload[Create Command Payload<br/>{type: "_command", payload: {cmd: ...}}]
+    CommandValid -->|Yes| CreateCmdPayload[Create Command Payload<br/>{type: '_command', payload: {cmd: ...}}]
     CreateCmdPayload --> PublishMQTT1[Publish to MQTT<br/>Topic: node/cmd]
     PublishMQTT1 --> MQTTPublished1{Published?}
     MQTTPublished1 -->|Error| Return500Pub1[Return 500<br/>Publish Failed]
@@ -236,7 +236,7 @@ flowchart TD
     DBUpdated -->|Error| Return500DB[Return 500<br/>Database Error]
     Return500DB --> EndReq12([End Request])
     
-    DBUpdated -->|Success| CreateConfigPayload[Create Config Payload<br/>{type: "_config_update", payload: {config: ...}}]
+    DBUpdated -->|Success| CreateConfigPayload[Create Config Payload<br/>{type: '_config_update', payload: {config: ...}}]
     CreateConfigPayload --> PublishMQTT2[Publish to MQTT<br/>Topic: node/cmd]
     PublishMQTT2 --> MQTTPublished2{Published?}
     MQTTPublished2 -->|Error| Return500Pub2[Return 500<br/>Publish Failed]

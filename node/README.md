@@ -199,7 +199,7 @@ flowchart TD
     
     PreparePayload[Prepare JSON Payload]
     PreparePayload --> CreateJSON[Create JSON Object<br/>StaticJsonDocument]
-    CreateJSON --> AddType[Add type: "_sensor_data"]
+    CreateJSON --> AddType[Add type: '_sensor_data']
     AddType --> AddPayload[Add payload object]
     AddPayload --> AddNodeInfo[Add node_name, timestamp]
     AddNodeInfo --> AddDHTData[Add temperature, humidity]
